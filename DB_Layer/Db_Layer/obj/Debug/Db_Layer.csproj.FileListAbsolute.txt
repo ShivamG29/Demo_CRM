@@ -1,0 +1,12 @@
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\bin\Debug\Db_Layer.dll
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\bin\Debug\Db_Layer.pdb
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\obj\Debug\Db_Layer.csproj.AssemblyReference.cache
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\obj\Debug\Db_Layer.csproj.CoreCompileInputs.cache
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\obj\Debug\Db_Layer.dll
+D:\CProgramData\user\dell\source\repos\Project AM\Db_Layer\Db_Layer\obj\Debug\Db_Layer.pdb
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\bin\Debug\Db_Layer.dll
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\bin\Debug\Db_Layer.pdb
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\obj\Debug\Db_Layer.csprojAssemblyReference.cache
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\obj\Debug\Db_Layer.csproj.CoreCompileInputs.cache
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\obj\Debug\Db_Layer.dll
+D:\Shivam\MVC\Project AM\DB_Layer\Db_Layer\obj\Debug\Db_Layer.pdb

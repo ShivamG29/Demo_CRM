@@ -1,0 +1,225 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .Employess {
+        max-height: 350px;
+        border: 2px solid black;
+        overflow: scroll;
+        text-align:justify;
+        color:forestgreen;
+        border:2px solid black;
+        border-radius:10px;
+    }
+</style>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function () {
+        var rs = document.getElementById("Check_in")
+        rs.disabled = false;
+        SelectData(); Breck(); EndBreck();Leave();
+        $("#Check_in").click(function () { Checkin(); });
+        $("#Check_Out").click(function () { CheckOut(); });
+    });
+    function SelectData() {
+        $.ajax({
+            url: '/Home/SelectData/',
+            method: 'GET',
+            datatype: 'JSON',
+            success: function (res) {
+                $.each(res, function (i, row) {
+                    $("#item").after("</br>"+ row.name +" ..." +row.WorkStatus +"</br>")
+                })
+            },
+            Error: function (res) {
+                alert("Can't Be Executed.......");
+                alert(res);
+            }
+        });
+    }
+    function Checkin() {
+        $.ajax({
+            url: '/Home/Checkin/',
+            method: 'GET',
+            datatype: 'JSON',
+            success: function (res) {
+                $.each(res, function (i, row) {
+                    debugger;
+                    if (row.msg == "Check-in SuccessFully....") {
+                        alert(row.msg)
+                        var rs = document.getElementById("Check_in")
+                        rs.disabled = true;
+                    }
+                    else {
+                        alert("Check-in SuccessFully.... Wrong")
+                    }
+                })
+            },
+            Error: function (res) {
+                alert("Can't Be Executed.......");
+                alert(res);
+            }
+        })
+    }
+    function Breck() {
+        $("#Breck").click(function () {
+            $.ajax({
+                url: '/Home/Breck/',
+                method: 'GET',
+                datatype: 'JSON',
+                success: function (res) {
+                    $.each(res, function (i, row) {
+                        debugger;
+                        alert(row.msg)
+                    })
+                },
+                Error: function (res) {
+                    alert("Can't Be Executed.......");
+                    alert(res);
+                }
+            })
+        });
+    }
+    function EndBreck() {
+        $("#End_Breck").click(function () {
+            $.ajax({
+                url: '/Home/EndBreck/',
+                method: 'GET',
+                datatype: 'JSON',
+                success: function (res) {
+                    $.each(res, function (i, row) {
+                        debugger;
+                        alert(row.msg)
+                    })
+                },
+                Error: function (res) {
+                    alert("Can't Be Executed.......");
+                    alert(res);
+                }
+            })
+        });
+    }
+    function Leave() {
+        $("#OnLeave").click(function () {
+            $.ajax({
+                url: '/Home/OnLeave/',
+                method: 'GET',
+                datatype: 'JSON',
+                success: function (res) {
+                    debugger;
+                    alert("OnLeave")
+                },
+                Error: function (res) {
+                  alert("Can't Be Executed.......");
+                    alert(res);
+                }
+            })
+        });
+    }
+    function CheckOut() {
+        $.ajax({
+            url: '/Home/CheckOut/',
+            method: 'GET',
+            datatype: 'JSON',
+            success: function (res) {
+                $.each(res, function (i, row) {
+                    debugger;
+                    if (row.msg == "Check-Out SuccessFully....") {
+                        alert(row.msg)
+                        var rs = document.getElementById("Check_in")
+                        rs.disabled = false;
+                    }
+                    else {
+                        alert("Check-CheckOut SuccessFully.... Wrong")
+                    }
+                })
+            },
+            Error: function (res) {
+                alert("Can't Be Executed.......");
+                alert(res);
+            }
+        })
+    }
+</script>
+
+<div class="row">
+    <div class="col-sm-4 bg-danger">
+        <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="col-sm-4 ">
+        <div class="Employess">
+            <u>
+                <h1>Employees</h1>
+            </u>
+            <p id="item">
+
+            </p>
+            @*<ol>
+                    @if (Model != null)
+                    {
+                        foreach (System.Data.DataRow row in Model.Rows)
+                        {
+                            <li>
+                                @row["remark"]
+                            </li>
+                        }
+                    }
+                </ol>*@
+        </div>
+    </div>
+
+
+    <div class="col-sm-4 bg-info">
+        <div class="spinner-border text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "submitForm" }))
+{
+    @Html.TextBox("msg")
+    <button type="button" id="Check_in" disabled name="Check_in" value="Check_in">Check-in</button>
+    <button type="button" id="Breck" name="Breck" value="Breck">Breck</button>
+    <button type="button" id="End_Breck" name="End_Breck" value="End_Breck">End Breck</button>
+    <button type="button" id="OnLeave" data-bs-toggle="modal" data-bs-target="#exampleModal" name="OnLeave" value="OnLeave">On Leave</button>
+    <button type="button" id="Check_Out" name="Check_Out" value="Check_Out" onclick="$('#submitForm').submit()">Check-out</button>
+    
+    @*<button type="submit" id="btnCancel" name="Command" value="Cancel" >Cancel (Server Side)</button>*@
+}
+<h3>@ViewBag.CheckIn</h3>
+<h3>@ViewBag.CheckIn</h3>
+@*@if (Model != null)
+    {
+        foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <H1>
+                @row["msg"]
+            </H1>
+        }
+    }*@
+<!-- Button trigger modal -->
+<button type="button" id="OnLeave" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Remark
+</button>
+
+<!-- Modal -->
+<div class="modal info" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Your Remark</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="remark"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
